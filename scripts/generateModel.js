@@ -50,7 +50,7 @@ export class ${modelName} extends BaseModel<I${modelName}Props>{
         super(props)
         this.props = props;
     }
-    static resource = 'user'
+    static resource = ${resourceName}
 }`;
 
   fs.writeFile(filePath, data, function(err) {

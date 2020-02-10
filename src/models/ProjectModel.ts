@@ -1,11 +1,9 @@
 import { BaseModel } from "./BaseModel";
-interface IUserModelProps {
+interface IProjectModelProps {
   name: string;
-  id: string;
-  login: string;
 }
 
-export class UserModel extends BaseModel<IUserModelProps> {
+export class ProjectModel extends BaseModel<IProjectModelProps> {
   constructor(props: any) {
     super(props);
     this.props = props;

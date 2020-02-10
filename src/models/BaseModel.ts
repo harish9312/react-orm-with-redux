@@ -56,7 +56,7 @@ export class BaseModel<P> {
   }
 
   /**
-   * Saves an array of instances to the Store, the instance map is getting created over here and is being saved to the store.   *
+   * Saves an array of instances to the Store, the instance map is getting created over here and is being saved to the store.
    * @returns {BaseModel<P>[]}
    * @memberof BaseModel
    */
@@ -82,7 +82,7 @@ export class BaseModel<P> {
    * @memberof BaseModel
    */
   static get(id: string, state = store.getState()) {
-    return state.model.get(this.getStoreKey(id, this))?.props;
+    return state.model.get(this.getStoreKey(id, this));
   }
 
   /**
@@ -99,7 +99,6 @@ export class BaseModel<P> {
         .filter((x: { resource: string; props: any }) =>
           x.resource === this.resource ? x.props : ""
         )
-        .map((ins: { props: any }) => ins.props)
         .toJS()
     );
   }
@@ -111,7 +110,7 @@ export class BaseModel<P> {
    * @returns
    * @memberof BaseModel
    */
-  static $delete(instance: BaseModel<any>) {
+  static delete(instance: BaseModel<any>) {
     deleteInstance(
       this.getStoreKey(instance.props.id || instance.props._id, instance)
     );

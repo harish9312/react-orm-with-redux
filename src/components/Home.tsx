@@ -1,15 +1,24 @@
 import axios from "axios";
 import * as React from "react";
 import { UserModel } from "../models/UserModel";
-export interface IHomeProps {}
+import { connect } from "react-redux";
+export interface IHomeProps {
+  users: UserModel[];
+}
 
-export class Home extends React.PureComponent<IHomeProps, {}> {
+class HomeImpl extends React.Component<IHomeProps, {}> {
   async componentDidMount() {
     const res = await axios.get("https://api.github.com/users");
     new UserModel(res.data).$saveAll();
   }
 
   render() {
-    return <h1>HOME</h1>;
+    return this.props.users.map(userData => (
+      <div key={userData.props.id}>{userData.props.login}</div>
+    ));
   }
 }
+
+const mapStateToProps = () => ({ users: UserModel.list() });
+
+export const Home = connect(mapStateToProps)(HomeImpl);
