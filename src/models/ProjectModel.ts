@@ -8,5 +8,5 @@ export class ProjectModel extends BaseModel<IProjectModelProps> {
     super(props);
     this.props = props;
   }
-  static resource = "user";
+  static resource = "project";
 }
